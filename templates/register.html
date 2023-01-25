@@ -1,0 +1,43 @@
+{% extends 'base.html' %} 
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/register.css')}}">
+<title>Registration Page</title>
+{% endblock %}
+{% block body %}
+<h1>New Student Registration Details</h1>
+
+<form class="form" method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.csrf_token }}
+    
+    <div class="form-group" style = text-align:center;>
+        <label for="{{ form.fullName.id }}">Full Name:</label>
+        {{ form.fullName(size=32) }}
+        {% for error in form.fullName.errors %}
+        <span class="error">{{ error }}</span>
+        {% endfor %}
+    </div>
+
+    <div class="form-group" style = text-align:center;>
+        <label for="{{ form.age.id }}">Age:</label>
+        {{ form.age(size=32) }}
+        {% for error in form.age.errors %}
+        <span class="error">{{ error }}</span>
+        {% endfor %}
+    </div>
+
+    <div class="form-group" style = text-align:center;>
+        <label for="{{ form.email.id }}">Email:</label>
+        {{ form.email(size=32) }}
+        {% for error in form.email.errors %}
+        <span class="error">{{ error }}</span>
+        {% endfor %}
+    </div>
+    {{ form.submit() }}
+</form>
+
+<h2>TA Registeration Details</h2>
+<form class="TAform" method="POST">
+    
+</form>
+{% endblock %}
