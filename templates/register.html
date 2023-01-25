@@ -1,43 +1,69 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block head %}
 <link rel="stylesheet" href="{{url_for('static', filename='css/register.css')}}">
 <title>Registration Page</title>
 {% endblock %}
 {% block body %}
 <h1>New Student Registration Details</h1>
-
-<form class="form" method="POST">
-    {{ form.hidden_tag() }}
-    {{ form.csrf_token }}
-    
-    <div class="form-group" style = text-align:center;>
-        <label for="{{ form.fullName.id }}">Full Name:</label>
-        {{ form.fullName(size=32) }}
-        {% for error in form.fullName.errors %}
+<form class="form" method="POST" action="{{url_for('student_register')}}">
+    {{ student_form.hidden_tag() }}
+    {{ student_form.csrf_token }}
+    <div class="form-group">
+        <label for="{{ student_form.fullName.id }}">Full Name:</label>
+        {{ student_form.fullName(size=32) }}
+        {% for error in student_form.fullName.errors %}
         <span class="error">{{ error }}</span>
         {% endfor %}
     </div>
 
-    <div class="form-group" style = text-align:center;>
-        <label for="{{ form.age.id }}">Age:</label>
-        {{ form.age(size=32) }}
-        {% for error in form.age.errors %}
+    <div class="form-group">
+        <label for="{{ student_form.age.id }}">Age:</label>
+        {{ student_form.age(size=32) }}
+        {% for error in student_form.age.errors %}
         <span class="error">{{ error }}</span>
         {% endfor %}
     </div>
 
-    <div class="form-group" style = text-align:center;>
-        <label for="{{ form.email.id }}">Email:</label>
-        {{ form.email(size=32) }}
-        {% for error in form.email.errors %}
+    <div class="form-group">
+        <label for="{{ student_form.email.id }}">Email:</label>
+        {{ student_form.email(size=32) }}
+        {% for error in student_form.email.errors %}
         <span class="error">{{ error }}</span>
         {% endfor %}
     </div>
-    {{ form.submit() }}
+    {{ student_form.submit() }}
+    <img src="{{ url_for('static', filename='src/45962.png') }}" alt=""  width="100" height="100">
 </form>
 
 <h2>TA Registeration Details</h2>
-<form class="TAform" method="POST">
-    
+<form class="TAform" method="POST" action="{{url_for('ta_register')}}">
+    {{ ta_form.hidden_tag() }}
+    {{ ta_form.csrf_token }}
+    <div class="form-ta">
+        <label for="{{ ta_form.fullName.id }}">Full Name:</label>
+        {{ ta_form.fullName(size=32) }}
+        {% for error in ta_form.fullName.errors %}
+        <span class="error">{{ error }}</span>
+        {% endfor %}
+    </div>
+
+    <div class="form-ta">
+        <label for="{{ ta_form.age.id }}">Age:</label>
+        {{ ta_form.age(size=32) }}
+        {% for error in ta_form.age.errors %}
+        <span class="error">{{ error }}</span>
+        {% endfor %}
+    </div>
+
+    <div class="form-ta">
+        <label for="{{ ta_form.email.id }}">Email:</label>
+        {{ ta_form.email(size=32) }}
+        {% for error in ta_form.email.errors %}
+        <span class="error">{{ error }}</span>
+        {% endfor %}
+    </div>
+    {{ ta_form.submit() }}
+    <img src="{{ url_for('static', filename='src/TAicon.png') }}" alt="" width="120" height="100">
 </form>
+
 {% endblock %}

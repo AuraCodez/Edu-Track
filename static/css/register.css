@@ -1,20 +1,40 @@
 h1 {
-    text-align:center;
-    margin-top: 200px;
+    text-align:left;
+    font-size:20px;
+    margin-top:100px;
+
 }
+
+h2 {
+    text-align:left;
+    font-size:20px;
+     margin-top:0px;
+}
+
 
 .form {
-    text-align:center;
-    margin-top:40px;
+    overflow: auto;
+    float: left;
+    width: 50%;
 }
 
-
+.TAform {
+    overflow: auto;
+    float: center;
+    width: 50%;
+}
 
 .form-group {
     margin-top:20px;
 }
 
+.form-ta {
+    margin-top:20px;
+}
+
+
 body {
+    background-attachment: fixed;
     background-image: url("sea.png");
     background-size: cover;
 }
