@@ -1,4 +1,5 @@
-from flask import Flask, redirect, render_template, request, url_for
+from flask import Flask, redirect, render_template, request, url_for, flash 
+from flask import get_flashed_messages
 from flask_sqlalchemy import SQLAlchemy
 from datetime import date, datetime
 from flask_wtf import FlaskForm
@@ -7,7 +8,7 @@ from wtforms.validators import DataRequired, Email, EqualTo
 
 app = Flask(__name__)
 
-with open ("appPW.txt") as f:
+with open ("appPW.txt") as f: #to hide and open the secret key
     passW = f.readline()
     
     
@@ -65,6 +66,7 @@ def register():
 def student_register():
     form = MyForm() 
     if form.validate_on_submit():
+        flash("Record successfully added.")
         new_student = Student(fullName=form.fullName.data, age=form.age.data, email = form.email.data)
         db.session.add(new_student)
         db.session.commit()
@@ -75,6 +77,7 @@ def student_register():
 def ta_register():
     ta_form = TAForm()
     if ta_form.validate_on_submit():
+        flash("Record successfully added.")
         new_TA = TA(fullName=ta_form.fullName.data, age=ta_form.age.data, email=ta_form.email.data)
         db.session.add(new_TA)
         db.session.commit()
