@@ -4,8 +4,9 @@ a clean interface for teachers to track their students progress, upload assignme
 
 I am planning to
 
-- Make a login system for the teachers/staff/ta to login
+- Make a login system for the teachersto login
 - Make a seperate login system for students to login
 -  Make is so that teachers can uppload assignment files and students can see it
+- Make it so students can access and see their current grades
 
 (A current work in progress project!) 
