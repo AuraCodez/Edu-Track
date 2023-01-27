@@ -5,6 +5,9 @@ from datetime import date, datetime
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo
+import pandas as pd
+import sqlite3
+
 
 app = Flask(__name__)
 
@@ -15,6 +18,18 @@ with open ("appPW.txt") as f: #to hide and open the secret key
 app.config['SECRET_KEY'] = passW
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.db'
 db = SQLAlchemy(app)
+
+
+conn = sqlite3.connect("instance/db.db", check_same_thread=False) #Making a connection to the database
+
+cursor = conn.cursor()
+query = 'SELECT * FROM student'
+
+cursor.execute(query) #Execute this query
+conn.commit()
+students = cursor.fetchall()  # fetches all (or all remaining) rows of a query result set and returns a list of tuples.
+
+
 
 
 class Student(db.Model):
@@ -68,8 +83,8 @@ def student_register():
     if form.validate_on_submit():
         flash("Record successfully added.")
         new_student = Student(fullName=form.fullName.data, age=form.age.data, email = form.email.data)
-        db.session.add(new_student)
-        db.session.commit()
+        cursor.execute("INSERT INTO student (fullName, age, email) VALUES (?, ?, ?)", (new_student.fullName, new_student.age, new_student.email))
+        conn.commit()
         return redirect(url_for('register'))
     
     
@@ -79,12 +94,18 @@ def ta_register():
     if ta_form.validate_on_submit():
         flash("Record successfully added.")
         new_TA = TA(fullName=ta_form.fullName.data, age=ta_form.age.data, email=ta_form.email.data)
-        db.session.add(new_TA)
-        db.session.commit()
+        cursor.execute("INSERT INTO TA (fullName, age, email) VALUES (?, ?, ?)", (new_TA.fullName, new_TA.age, new_TA.email))
+        conn.commit()
         return redirect(url_for('register'))
+    
+    
+@app.route('/test')
+def test():
+     return render_template('test.html', students=students)
+    
+    
+    
 
-with app.app_context():
-    db.create_all()
     
 if __name__ == '__main__':
     app.run(debug=True)

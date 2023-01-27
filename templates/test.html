@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+    crossorigin="anonymous"></script>
+
+{% endblock %}
+
+<h1>Testing</h1>
+
+{% block body %}
+<ht>Students Table</ht>
+<table id="myTable" class="display">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in students %}
+          <tr>
+            {% for cell in row %}
+              <td> {{ cell }}</td>
+            {% endfor %}
+
+        {% endfor %}
+          </tr>
+    </tbody>
+</table>
+
+
+<script>
+    $(document).ready(function () {
+        $('#my_table').DataTable()
+    });
+</script>
+{% endblock %}
