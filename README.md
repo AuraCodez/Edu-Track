@@ -11,4 +11,4 @@ I am actively working on
 - Make it so students can access and see their current grades
 - Switching the database to MySQL instead of SQLite
 
-(A current work in progress project!) 
+**(A current work in progress project!) **
