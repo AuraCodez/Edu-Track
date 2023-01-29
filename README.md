@@ -9,6 +9,6 @@ I am actively working on
 - Make a seperate login system for students to login
 -  Make is so that teachers can uppload assignment files and students can see it
 - Make it so students can access and see their current grades
-- Switching the database to MySQL?
+- Switching the database to MySQL instead of SQLite
 
 (A current work in progress project!) 
