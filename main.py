@@ -115,6 +115,30 @@ def ta_register():
         conn.close()
         return redirect(url_for("register"))
 
+def getStudents(): #From preventing the database from being "locked" so store it in a function and return the fetchall() statement
+    conn = sqlite3.connect("instance/db.db", check_same_thread=False)
+    cursor = conn.cursor()
+    res = cursor.execute("SELECT * FROM student")
+    students = res.fetchall()
+    conn.commit()
+    conn.close()
+    return students
+    
+
+def getTAs():
+    conn = sqlite3.connect("instance/db.db", check_same_thread=False)
+    cursor = conn.cursor()
+    res = cursor.execute("SELECT * FROM ta")
+    ta = res.fetchall()
+    conn.commit()
+    conn.close()
+    return ta
+
+
+students = getStudents()
+ta = getTAs()
+
+
 
 @app.route("/test")
 def test():
